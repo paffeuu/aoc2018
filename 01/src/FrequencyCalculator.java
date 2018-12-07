@@ -12,16 +12,16 @@ public class FrequencyCalculator {
         this.fileDir = fileDir;
     }
 
-    public int calculateFrequency() {
+    public int calculateFrequency() throws FileNotFoundException {
         if (lines == null) {
-            lines = readInputFromFile();
+            readInputFromFile();
         }
         return getFrequenciesStreamFromLinesList(lines).sum();
     }
 
-    public int findFirstRepeatingFrequency() {
+    public int findFirstRepeatingFrequency() throws FileNotFoundException {
         if (lines == null) {
-            lines = readInputFromFile();
+            readInputFromFile();
         }
         List<Integer> changesList = getFrequenciesStreamFromLinesList(lines).boxed().collect(Collectors.toList());
         Set<Integer> frequencies = new HashSet<>();
@@ -39,18 +39,12 @@ public class FrequencyCalculator {
         }
     }
 
-    private List<String> readInputFromFile() {
-        List<String> lines = null;
-        try {
-            Scanner scanner = new Scanner(new File(fileDir));
-            lines = new LinkedList<>();
-            while(scanner.hasNextLine()) {
-                lines.add(scanner.nextLine());
-            }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
+    private void readInputFromFile() throws FileNotFoundException{
+        Scanner scanner = new Scanner(new File(fileDir));
+        lines = new LinkedList<>();
+        while(scanner.hasNextLine()) {
+            lines.add(scanner.nextLine());
         }
-        return lines;
     }
 
     private IntStream getFrequenciesStreamFromLinesList(List<String> lines) {
