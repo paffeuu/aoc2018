@@ -5,27 +5,19 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class FrequencyCalculator {
-    private String fileDir;
     private List<String> lines;
 
-    public FrequencyCalculator(String fileDir) {
-        this.fileDir = fileDir;
+    public FrequencyCalculator(String fileDir) throws FileNotFoundException {
+        readInputFromFile(fileDir);
     }
 
-    public int calculateFrequency() throws FileNotFoundException {
-        if (lines == null) {
-            readInputFromFile();
-        }
+    public int calculateFrequency() {
         return getFrequenciesStreamFromLinesList(lines).sum();
     }
 
-    public int findFirstRepeatingFrequency() throws FileNotFoundException {
-        if (lines == null) {
-            readInputFromFile();
-        }
+    public int findFirstRepeatingFrequency() {
         List<Integer> changesList = getFrequenciesStreamFromLinesList(lines).boxed().collect(Collectors.toList());
         Set<Integer> frequencies = new HashSet<>();
-
         int newFrequency = 0;
         while (true) {
             for (Integer change : changesList) {
@@ -39,7 +31,7 @@ public class FrequencyCalculator {
         }
     }
 
-    private void readInputFromFile() throws FileNotFoundException{
+    private void readInputFromFile(String fileDir) throws FileNotFoundException{
         Scanner scanner = new Scanner(new File(fileDir));
         lines = new LinkedList<>();
         while(scanner.hasNextLine()) {
