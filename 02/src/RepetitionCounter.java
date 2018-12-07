@@ -44,8 +44,7 @@ public class RepetitionCounter {
                 int positionOfDifference = -1;
                 for (int k = 0; k < lines.get(i).length(); k++) {
                     if (lines.get(i).charAt(k) != lines.get(j).charAt(k)) {
-                        differences++;
-                        if (differences > 1) {
+                        if (++differences > 1) {
                             break;
                         }
                         positionOfDifference = k;
