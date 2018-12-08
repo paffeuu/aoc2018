@@ -11,10 +11,10 @@ public class FabricAnalyzer {
     public FabricAnalyzer(String fileDir, int size) throws FileNotFoundException {
         this.fabricSize = size;
         readInputFromFile(fileDir);
-        clean();
     }
 
     public int countOverlappedSquares() {
+        initialize();
         lines.forEach(this::analyzeClaim);
         claimSet.forEach(this::markClaimOnMap);
         int counter = 0;
@@ -29,7 +29,7 @@ public class FabricAnalyzer {
     }
 
     public Claim findIntactClaim() {
-        clean();
+        initialize();
         lines.forEach(this::analyzeClaim);
         claimSet.forEach(this::markClaimOnMap);
         for (Claim claim : claimSet) {
@@ -82,7 +82,7 @@ public class FabricAnalyzer {
         }
     }
 
-    private void clean() {
+    private void initialize() {
         fabricMap = new int[fabricSize][fabricSize];
         claimSet = new HashSet<>();
     }
