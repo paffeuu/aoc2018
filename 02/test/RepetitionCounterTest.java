@@ -8,7 +8,7 @@ class RepetitionCounterTest {
     @Test
     void solvePuzzle() throws FileNotFoundException {
         repetitionCounter = new RepetitionCounter("input.txt");
-        System.out.println("cheksum = " + repetitionCounter.countCheckSum());
+        System.out.println("checksum = " + repetitionCounter.countCheckSum());
         System.out.println("common part of two strings differing by one char = "
                 + repetitionCounter.findTwoStringDifferingByOneChar());
     }
