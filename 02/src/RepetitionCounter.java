@@ -64,5 +64,6 @@ public class RepetitionCounter {
         while(scanner.hasNextLine()) {
             lines.add(scanner.nextLine());
         }
+        scanner.close();
     }
 }

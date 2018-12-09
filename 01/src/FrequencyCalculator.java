@@ -37,6 +37,7 @@ public class FrequencyCalculator {
         while(scanner.hasNextLine()) {
             lines.add(scanner.nextLine());
         }
+        scanner.close();
     }
 
     private IntStream getFrequenciesStreamFromLinesList(List<String> lines) {

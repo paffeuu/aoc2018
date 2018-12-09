@@ -96,6 +96,7 @@ public class GuardSleepAnalyzer {
         while(scanner.hasNextLine()) {
             lines.add(scanner.nextLine());
         }
+        scanner.close();
     }
 
     private void initialize() {
