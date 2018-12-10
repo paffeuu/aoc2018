@@ -1,6 +1,10 @@
-import java.io.File;
+import utils.InputReader;
+
 import java.io.FileNotFoundException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.ListIterator;
 import java.util.stream.IntStream;
 
 public class PolymerReactor {
@@ -8,7 +12,7 @@ public class PolymerReactor {
     private List<Character> chars;
 
     public PolymerReactor(String fileDir) throws FileNotFoundException {
-        readInputFromFile(fileDir);
+        input = InputReader.readOneLineFromFile(fileDir);
     }
 
     public int reduceReactions() {
@@ -52,11 +56,5 @@ public class PolymerReactor {
         List<Character> charsWithoutOneType = new LinkedList<>(chars);
         charsWithoutOneType.removeIf(currCh -> currCh == ch || currCh == Character.toUpperCase(ch));
         return charsWithoutOneType;
-    }
-
-    private void readInputFromFile(String fileDir) throws FileNotFoundException {
-        Scanner scanner = new Scanner(new File(fileDir));
-        input = scanner.nextLine();
-        scanner.close();
     }
 }

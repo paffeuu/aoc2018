@@ -1,15 +1,14 @@
-import java.io.File;
+import utils.InputReader;
+
 import java.io.FileNotFoundException;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Scanner;
 
 public class RepetitionCounter {
     private List<String> lines;
     private final static int ASCII_a = 97;
 
     public RepetitionCounter(String fileDir) throws FileNotFoundException {
-        readInputFromFile(fileDir);
+        lines = InputReader.readAllLinesFromFile(fileDir);
     }
 
     public int countCheckSum() {
@@ -56,14 +55,5 @@ public class RepetitionCounter {
             }
         }
         return null;
-    }
-
-    private void readInputFromFile(String fileDir) throws FileNotFoundException {
-        Scanner scanner = new Scanner(new File(fileDir));
-        lines = new LinkedList<>();
-        while(scanner.hasNextLine()) {
-            lines.add(scanner.nextLine());
-        }
-        scanner.close();
     }
 }

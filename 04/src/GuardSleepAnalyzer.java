@@ -1,4 +1,5 @@
-import java.io.File;
+import utils.InputReader;
+
 import java.io.FileNotFoundException;
 import java.time.LocalDateTime;
 import java.util.*;
@@ -9,7 +10,7 @@ public class GuardSleepAnalyzer {
     private Set<Guard> guardSet;
 
     public GuardSleepAnalyzer(String fileDir) throws FileNotFoundException {
-        readInputFromFile(fileDir);
+        lines = InputReader.readAllLinesFromFile(fileDir);
     }
 
     public int[] findGuardAndMinuteWhenHeOftenSleeps() {
@@ -88,15 +89,6 @@ public class GuardSleepAnalyzer {
             minuteMap.put(i, guard.getMinutesAsleep()[i]);
         }
         return minuteMap.entrySet().stream().max(Comparator.comparingInt(Map.Entry::getValue)).get().getKey();
-    }
-
-    private void readInputFromFile(String fileDir) throws FileNotFoundException {
-        Scanner scanner = new Scanner(new File(fileDir));
-        lines = new LinkedList<>();
-        while(scanner.hasNextLine()) {
-            lines.add(scanner.nextLine());
-        }
-        scanner.close();
     }
 
     private void initialize() {

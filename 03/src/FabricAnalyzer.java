@@ -1,6 +1,9 @@
-import java.io.File;
+import utils.InputReader;
+
 import java.io.FileNotFoundException;
-import java.util.*;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 public class FabricAnalyzer {
     private int fabricSize;
@@ -10,7 +13,7 @@ public class FabricAnalyzer {
 
     public FabricAnalyzer(String fileDir, int size) throws FileNotFoundException {
         this.fabricSize = size;
-        readInputFromFile(fileDir);
+        lines = InputReader.readAllLinesFromFile(fileDir);
     }
 
     public int countOverlappedSquares() {
@@ -72,15 +75,6 @@ public class FabricAnalyzer {
                 fabricMap[i][j]++;
             }
         }
-    }
-
-    private void readInputFromFile(String fileDir) throws FileNotFoundException {
-        Scanner scanner = new Scanner(new File(fileDir));
-        lines = new LinkedList<>();
-        while(scanner.hasNextLine()) {
-            lines.add(scanner.nextLine());
-        }
-        scanner.close();
     }
 
     private void initialize() {

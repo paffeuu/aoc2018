@@ -1,6 +1,9 @@
-import java.io.File;
+import utils.InputReader;
+
 import java.io.FileNotFoundException;
-import java.util.*;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -8,7 +11,7 @@ public class FrequencyCalculator {
     private List<String> lines;
 
     public FrequencyCalculator(String fileDir) throws FileNotFoundException {
-        readInputFromFile(fileDir);
+        lines = InputReader.readAllLinesFromFile(fileDir);
     }
 
     public int calculateFrequency() {
@@ -29,15 +32,6 @@ public class FrequencyCalculator {
                 }
             }
         }
-    }
-
-    private void readInputFromFile(String fileDir) throws FileNotFoundException{
-        Scanner scanner = new Scanner(new File(fileDir));
-        lines = new LinkedList<>();
-        while(scanner.hasNextLine()) {
-            lines.add(scanner.nextLine());
-        }
-        scanner.close();
     }
 
     private IntStream getFrequenciesStreamFromLinesList(List<String> lines) {
